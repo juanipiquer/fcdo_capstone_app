@@ -96,8 +96,6 @@ app.layout = html.Div([
         marks={str(i): {'label': str(int(i * 100)) + '%', 'style': {'font-family': 'Helvetica'}} for i in np.arange(0, 1.01, 0.05)},
     ),
 
-    html.Br(),
-
     html.Div(style={'height': '100px'}),
 
     ## Table of relations beteween countries based on the PCA
