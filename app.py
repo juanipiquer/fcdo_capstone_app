@@ -125,7 +125,7 @@ app.layout = html.Div([
         
         columns=[
             {'name': 'Country', 'id': 'Country 1'},
-            dict(name='Mean Distance', id='Mean Mean Distance', type='numeric', format=percentage)
+            dict(name='Average mean distance', id='Mean Mean Distance', type='numeric', format=percentage)
         ],
         fixed_rows={'headers': True, 'data': 0},
         data=mean_distance_table.to_dict('records'),
