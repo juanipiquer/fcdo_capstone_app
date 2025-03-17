@@ -86,7 +86,7 @@ app.layout = html.Div([
 
     ## Table of relations beteween countries based on the PCA
         # first, the selector of country button 
-    html.H3("Country Pairwise Co-Cluster Table since 1990", style={'font-family': 'Helvetica'}),
+    html.H3("Country Pairwise distance 1990 - 2024", style={'font-family': 'Helvetica'}),
     dcc.Dropdown(
         id='country-1-dropdown',
         value='United Kingdom',
@@ -101,7 +101,6 @@ app.layout = html.Div([
         id='filtered-table',
         columns=[
             {'name': 'Country', 'id': 'Country 2'},
-            dict(name='Co-Cluster Score', id='Co-Cluster Score', type='numeric', format=percentage),
             dict(name='Mean distance', id='Mean distance', type='numeric', format=percentage)
         ],
         fixed_rows={'headers': True, 'data': 0},
@@ -120,13 +119,13 @@ app.layout = html.Div([
     html.Br(), 
 
     ## Table with the mean of distance of a country with all the rest. 
-    html.H3("Mean Mean Distance Table", style={'font-family': 'Helvetica'}),
+    html.H3("Country mean distance from all the rest 1990 - 2024", style={'font-family': 'Helvetica'}),
     dash_table.DataTable(
         id='mean-distance-table',
         
         columns=[
             {'name': 'Country', 'id': 'Country 1'},
-            dict(name='Mean Mean Distance', id='Mean Mean Distance', type='numeric', format=percentage)
+            dict(name='Mean Distance', id='Mean Mean Distance', type='numeric', format=percentage)
         ],
         fixed_rows={'headers': True, 'data': 0},
         data=mean_distance_table.to_dict('records'),
