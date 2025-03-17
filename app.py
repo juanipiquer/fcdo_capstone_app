@@ -32,6 +32,14 @@ association_scores = pd.read_csv('data_output/association_scores.csv')
 mean_distance_table = association_scores.groupby('Country 1')['Mean distance'].mean().reset_index()
 mean_distance_table = mean_distance_table.rename(columns={'Mean distance': 'Mean Mean Distance'})
 
+unique_regions = pca_results['region_name'].unique()
+
+
+colors = ['rgb(17, 112, 170)', 'rgb(252, 125, 11)', 'rgb(163, 172, 185)', 'rgb(95, 162, 206)', 'rgb(200, 82, 0)', 'rgb(123, 132, 143)', 'rgb(163, 204, 233)', 'rgb(255, 188, 121)', 'rgb(200, 208, 217)']
+color_mapping = {region: color for region, color in zip(unique_regions, colors[:len(unique_regions)])}
+
+
+
 #######################################################
 ## 2. UN PCA votes plot with year slider ##
 #######################################################
@@ -153,8 +161,8 @@ def update_figure(gdp_range, pop_range, year):
         x='PCA1',
         y='PCA2',
         color='region_name',
-        color_discrete_sequence=['rgb(17, 112, 170)', 'rgb(252, 125, 11)', 'rgb(163, 172, 185)', 'rgb(95, 162, 206)', 'rgb(200, 82, 0)', 'rgb(123, 132, 143)', 'rgb(163, 204, 233)', 'rgb(255, 188, 121)', 'rgb(200, 208, 217)'],
-        hover_data={'ms_name': True, 
+        color_discrete_map=color_mapping,
+        hover_data={'ms_name': True,
                     'region_name': True,
                      'PCA1': False, 'PCA2': False, 'pop': ':.2%', 'gdp_pp': ':.2%', 'cluster': False},
         labels={'PCA1': '', 'PCA2': ''},
@@ -200,16 +208,14 @@ if __name__ == '__main__':
 
 
 
-
-# Calculate the correlation between Co-Cluster Score and Mean Distance
-#correlation = association_scores[['Co-Cluster Score', 'Mean distance']].corr().iloc[0, 1]
-
-# Print the total correlation
-#print(f"Total Correlation between Co-Cluster Score and Mean Distance: {correlation:.2f}")
-
-
 ### Separate votes by country # most impurtant votes?
-## Agregarle botón para seleccionar que países resaltar desde la lista completa para any givren year
-# eso hay q hacerlo en das
 
-# Mezclar todas las aplicaciones
+
+
+
+
+
+print('Unique region names:')
+print(pca_results['region_name'].unique())
+
+
