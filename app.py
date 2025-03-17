@@ -50,8 +50,34 @@ percentage = FormatTemplate.percentage(2)
 app.layout = html.Div([
     ## MAIN TITLE
     html.H1('UN votes in the General Assembly', style={'font-family': 'Helvetica', 'text-align': 'center'}),
-    
-    ## SLIDER TITLE (gdp)
+
+        ## Year selector slider
+    html.H5('Select year', style={'font-family': 'Helvetica'}),
+    dcc.Slider(
+        id='year-slider',
+        min=pca_results['year'].min(),
+        max=pca_results['year'].max(),
+        value=pca_results['year'].max(),
+        marks={str(i): {'label': str(i), 'style': {'font-family': 'Helvetica', 'writing-mode': 'vertical-lr'}} for i in range(pca_results['year'].min(), pca_results['year'].max(), 1)},
+        step=1,
+        included=False
+    ),
+    html.Div(style={'height': '5px'}),
+
+    ## PCA GRAPH
+    dcc.Graph(
+        id='pca-graph',
+        style={
+            'font-family': 'Helvetica',
+            'height': '600px',
+            'flex': '1',
+            'margin-bottom': '-20px'  # Added lower margin
+        },
+        config={'scrollZoom': True}
+    ),
+
+
+        ## SLIDER TITLE (gdp)
     html.H4('Nominal GDP per capita percentile', style={'font-family': 'Helvetica'}),
     dcc.RangeSlider(
         id='gdp-slider',
@@ -71,30 +97,6 @@ app.layout = html.Div([
     ),
 
     html.Br(),
-
-    ## PCA GRAPH
-    dcc.Graph(
-        id='pca-graph',
-        style={
-            'font-family': 'Helvetica',
-            'height': '600px',
-            'flex': '1',
-            'margin-bottom': '-20px'  # Added lower margin
-        },
-        config={'scrollZoom': True}
-    ),
-
-    ## Year selector slider
-    html.H5('Select year', style={'font-family': 'Helvetica'}),
-    dcc.Slider(
-        id='year-slider',
-        min=pca_results['year'].min(),
-        max=pca_results['year'].max(),
-        value=pca_results['year'].max(),
-        marks={str(i): {'label': str(i), 'style': {'font-family': 'Helvetica', 'writing-mode': 'vertical-lr'}} for i in range(pca_results['year'].min(), pca_results['year'].max(), 1)},
-        step=1,
-        included=False
-    ),
 
     html.Div(style={'height': '100px'}),
 
