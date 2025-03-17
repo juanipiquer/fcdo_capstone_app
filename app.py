@@ -38,8 +38,6 @@ unique_regions = pca_results['region_name'].unique()
 colors = ['rgb(17, 112, 170)', 'rgb(252, 125, 11)', 'rgb(163, 172, 185)', 'rgb(95, 162, 206)', 'rgb(200, 82, 0)', 'rgb(123, 132, 143)', 'rgb(163, 204, 233)', 'rgb(255, 188, 121)', 'rgb(200, 208, 217)']
 color_mapping = {region: color for region, color in zip(unique_regions, colors[:len(unique_regions)])}
 
-
-
 #######################################################
 ## 2. UN PCA votes plot with year slider ##
 #######################################################
@@ -75,11 +73,19 @@ app.layout = html.Div([
     html.Br(),
 
     ## PCA GRAPH
-    dcc.Graph(id='pca-graph', style={'font-family': 'Helvetica',
-    'height': '600px', 'flex': '1'}, config={'scrollZoom': True}),
+    dcc.Graph(
+        id='pca-graph',
+        style={
+            'font-family': 'Helvetica',
+            'height': '600px',
+            'flex': '1',
+            'margin-bottom': '-20px'  # Added lower margin
+        },
+        config={'scrollZoom': True}
+    ),
 
     ## Year selector slider
-    html.H4('Select year', style={'font-family': 'Helvetica'}),
+    html.H5('Select year', style={'font-family': 'Helvetica'}),
     dcc.Slider(
         id='year-slider',
         min=pca_results['year'].min(),
@@ -181,7 +187,7 @@ def update_figure(gdp_range, pop_range, year):
                 'text': f'Year: {year} <br> GDP PP range: {gdp_range[0]:.2%} to {gdp_range[1]:.2%} <br> Population range: {pop_range[0]:.2%} to {pop_range[1]:.2%} <br> Total countries: {len(pca_results_filtered)} <br> ',
             }
         }, 
-        margin = dict(t = 200),
+        margin = dict(t = 200, l = 0),
         xaxis=dict(
             showticklabels=False,
         ),
@@ -209,13 +215,3 @@ if __name__ == '__main__':
 
 
 ### Separate votes by country # most impurtant votes?
-
-
-
-
-
-
-print('Unique region names:')
-print(pca_results['region_name'].unique())
-
-
