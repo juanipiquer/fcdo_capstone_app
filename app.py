@@ -78,7 +78,7 @@ app.layout = html.Div([
 
 
         ## SLIDER TITLE (gdp)
-    html.H4('Nominal GDP per capita percentile', style={'font-family': 'Helvetica'}),
+    html.H5('Nominal GDP per capita percentile', style={'font-family': 'Helvetica'}),
     dcc.RangeSlider(
         id='gdp-slider',
         min=0,
@@ -87,7 +87,7 @@ app.layout = html.Div([
         marks={str(i): {'label': str(int(i * 100)) + '%', 'style': {'font-family': 'Helvetica'}} for i in np.arange(0, 1.01, 0.05)},
     ),
     ## SLIDER TITLE (population)
-    html.H4('Population percentile', style={'font-family': 'Helvetica'}),
+    html.H5('Population percentile', style={'font-family': 'Helvetica'}),
     dcc.RangeSlider(
         id='pop-slider',
         min=0,
