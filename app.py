@@ -58,7 +58,7 @@ app.layout = html.Div([
         min=pca_results['year'].min(),
         max=pca_results['year'].max(),
         value=pca_results['year'].max(),
-        marks={str(i): {'label': str(i), 'style': {'font-family': 'Helvetica', 'writing-mode': 'vertical-lr'}} for i in range(pca_results['year'].min(), pca_results['year'].max(), 1)},
+        marks={str(i): {'label': str(i), 'style': {'font-family': 'Helvetica', 'writing-mode': 'vertical-lr'}} for i in range(pca_results['year'].min(), pca_results['year'].max()+1, 1)},
         step=1,
         included=False
     ),
