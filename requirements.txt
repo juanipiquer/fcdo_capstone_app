@@ -3,3 +3,5 @@ numpy
 dash
 plotly
 scikit-learn
+networkx
+iso3166
