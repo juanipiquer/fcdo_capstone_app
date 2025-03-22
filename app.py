@@ -48,8 +48,6 @@ app = dash.Dash(__name__)
 percentage = FormatTemplate.percentage(2)
 
 app.layout = html.Div([
-    ## MAIN TITLE
-    html.H1('UN votes in the General Assembly', style={'font-family': 'Helvetica', 'text-align': 'center'}),
 
         ## Year selector slider
     html.H5('Select year', style={'font-family': 'Helvetica'}),
